@@ -1,0 +1,8 @@
+{
+  // Sito statico: nessun Worker script, solo file da servire.
+  "name": "flappy-sirius",
+  "compatibility_date": "2026-08-28",
+  "assets": {
+    "directory": "./"
+  }
+}
