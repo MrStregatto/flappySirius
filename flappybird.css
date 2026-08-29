@@ -1,0 +1,67 @@
+body {
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#board {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    /* background-color: skyblue; */
+    background-image: url("./grafica/flappybirdbg.png");
+}
+
+#gameArea {
+    position: relative;   /* il riferimento per il figlio absolute */
+    width: 360px;
+    height: 640px;
+    margin: 0 auto;       /* margini automatici a destra e sinistra = centrato */
+}
+
+#menu {
+    position: absolute; /* esce dal flusso, si sovrappone al canvas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 640px; /* stessa altezza del canvas */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+#menuPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    padding: 24px 28px;
+    background: rgba(0, 0, 0, 0.55);        /* velo scuro per leggere il testo */
+    border: 4px solid #ffd93b;
+    border-radius: 12px;
+}
+
+#menuPanel h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #fff;
+}
+
+#menuPanel button {
+    font-family: inherit;
+    font-size: 18px;
+    padding: 10px 22px;
+    min-width: 160px;
+    cursor: pointer;
+
+    color: #fff;
+    background: #4ec0ca;
+    border: 3px solid #fff;
+    border-radius: 8px;
+}
+
+#menuPanel button:hover  { background: #5fd3dd; }
+#menuPanel button:active { transform: translateY(2px); box-shadow: 0 2px 0 #2f7f87; }
