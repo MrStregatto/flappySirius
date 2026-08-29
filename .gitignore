@@ -1,10 +1,3 @@
-# ---------------------------------------------------------------
-# .gitignore - Flappy Sirius
-# ---------------------------------------------------------------
-
-# --- File di lavoro grafico (pesanti, non servono nel gioco) ---
-grafica/PSD/
-grafica/backup/
 *.psd
 *.psb
 *.ai
@@ -12,48 +5,26 @@ grafica/backup/
 *.sketch
 *.fig
 
-# --- Backup e file temporanei ---
-backup/
 *.bak
 *.tmp
 *.old
 *~
 *.orig
 
-# --- Sorgenti audio non usati dal gioco ---
-audio/backup/
-audio/raw/
 *.aup3
 *.flp
 
-# --- Sistema operativo ---
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 
-# --- Editor / IDE ---
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
-.idea/
-*.code-workspace
-
-# --- Node / build (se in futuro aggiungi strumenti) ---
-node_modules/
-dist/
-build/
-npm-debug.log*
-yarn-error.log*
-package-lock.json.bak
-
-# --- Segreti: mai nel repository ---
 .env
 .env.*
 *.key
 *.pem
 
-# --- Log ---
+
 *.log
 logs/
