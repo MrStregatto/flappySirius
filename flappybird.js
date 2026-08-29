@@ -94,7 +94,7 @@ window.onload = function(){
 
     requestAnimationFrame(update);
     setInterval(placePipes, 1500); //ogni 1,5 secondio
-    setInterval(animateBird, 100); //ogni 1/10 secondi
+    // setInterval(animateBird, 100); //ogni 1/10 secondi
 
 
     // inputs
