@@ -76,7 +76,7 @@ window.onload = function(){
 
 
     // --------- gestione video bird
-    // disegno un rettangolo per debug
+    // disegno un rettangolo per debug 
     /*context.fillStyle = "green";
     context.fillRect(bird.x, bird.y, bird.width, bird.height); */
 
