@@ -19,9 +19,9 @@ let birdWidth = 34; // width/height ratio = 408/228 == 17/12
 let birdHeight = 24;
 let birdXPos = boardWidth/8;
 let birdYPos = boardHeight/2;
-//let birdImg;
-let birdImgs = [];
-let birdImgsIndex = 0;
+let birdImg;
+// let birdImgs = [];
+// let birdImgsIndex = 0;
 
 // creo una classe di bird
 let bird = {
@@ -51,7 +51,7 @@ let wingSound = new Audio("./audio/sfx_wing.wav");
 let hitSound = new Audio("./audio/sfx_hit.wav");
 let bgm = new Audio("./audio/tiny_paws.mp3");
 let dieSound = new Audio("./audio/sfx_die.wav");
-bgm.loop = false;
+bgm.loop = true;
 bgm.volume = 0.1;
 
 
@@ -81,18 +81,8 @@ window.onload = function(){
     context.fillRect(bird.x, bird.y, bird.width, bird.height); */
 
     // load imagine singola (serve per futuro)
-    // birdImg = new Image();
-    // birdImg.src = "./flappybird.png";
-    // birdImg.onload = function(){
-    //    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
-    // }
-
-    for(let i = 0; i < 4; i++){
-        let birdImg = new Image();
-        // birdImg.src = `./grafica/flappybird${i}.png`;
-        birdImg.src = `./grafica/flappybird.png`;
-        birdImgs.push(birdImg);
-    }
+    birdImg = new Image();
+    birdImg.src = "./grafica/flappybird.png";
 
 
     // caricamento immagini pipes sopra e sotto
@@ -169,9 +159,7 @@ function update(){
     // 'disegno' l'uccello
     velocityY += gravity;
     bird.y = Math.max(bird.y + velocityY, 0); // aggiunge la gravità all'uccello e non può andare oltre lo schermo
-    //context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
-    context.drawImage(birdImgs[birdImgsIndex], bird.x, bird.y, bird.width, bird.height);
-    
+    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
 
     if(bird.y > board.height){
@@ -216,7 +204,6 @@ function placePipes(){
     }
 
     //math va da 0 a 1 ( compreso 0.3, 0.66)
-
     let randomPipeY = pipeYPos - pipeHeight/4 - Math.random()*(pipeHeight/2);
     let openSpace = board.height/4;
 
@@ -260,13 +247,6 @@ function detectCollision(a, b){
            a.x + a.width > b.x &&
            a.y < b.y + b.height &&
            a.y + a.height > b.y
-
-}
-
-function animateBird(){
-    if(!gameStarted) return;
-    birdImgsIndex++; // dovrebbe incrementare al prossimo frame
-    birdImgsIndex %= birdImgs.length; //dovrebbe tornare indietro al num 0
 
 }
 
