@@ -13,18 +13,18 @@ body {
 }
 
 #gameArea {
-    position: relative;   /* il riferimento per il figlio absolute */
+    position: relative; 
     width: 360px;
     height: 640px;
-    margin: 0 auto;       /* margini automatici a destra e sinistra = centrato */
+    margin: 0 auto;      
 }
 
 #menu {
-    position: absolute; /* esce dal flusso, si sovrappone al canvas */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
-    height: 640px; /* stessa altezza del canvas */
+    height: 640px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +39,7 @@ body {
     gap: 16px;
 
     padding: 24px 28px;
-    background: rgba(0, 0, 0, 0.55);        /* velo scuro per leggere il testo */
+    background: rgba(0, 0, 0, 0.55);
     border: 4px solid #ffd93b;
     border-radius: 12px;
 }
