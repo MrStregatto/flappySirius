@@ -47,10 +47,17 @@ let velocityY = 0; // salto dell'uccello
 let gravity = 0.4;
 
 // caricamento degli audio
-let wingSound = new Audio("./audio/sfx_wing.wav");
-let hitSound = new Audio("./audio/sfx_hit.wav");
-let bgm = new Audio("./audio/tiny_paws.mp3");
-let dieSound = new Audio("./audio/sfx_die.wav");
+const wingSound = new Audio("./audio/sfx_wing.wav");
+const hitSound = new Audio("./audio/sfx_hit.wav");
+const bgm = new Audio("./audio/tiny_paws.mp3");
+const dieSound = new Audio("./audio/sfx_die.wav");
+
+wingSound.preload = "auto";
+hitSound.preload = "auto";
+dieSound.preload = "auto";
+bgm.preload = "auto";
+
+
 bgm.loop = true;
 bgm.volume = 0.1;
 
@@ -97,6 +104,14 @@ window.onload = function(){
     // setInterval(animateBird, 100); //ogni 1/10 secondi
 
 
+    // caricamento audio
+    wingSound.load();
+    dieSound.load();
+    hitSound.load();
+    bgm.load();
+
+
+
     // inputs
     // Tastiera
     document.addEventListener('keydown', (e) => {
@@ -133,6 +148,10 @@ function startGame(mode){
 function endGame(){
     if (gameOver) return;      // puo' essere chiamata due volte nello stesso frame
     gameOver = true;
+
+    
+    hitSound.play();
+    hitSound.currentTime = 0;
 
     bgm.pause();
     bgm.currentTime = 0;
@@ -178,7 +197,6 @@ function update(){
         }
 
         if (detectCollision(bird, pipe)){
-            hitSound.play();
             endGame();
         }
     }
@@ -236,8 +254,8 @@ function jump() {
     if(gameOver) return;
     if(!gameStarted) return;
 
-    wingSound.currentTime = 0;
-    wingSound.play();
+     const sound = wingSound.cloneNode(true);
+     sound.play();
 
     velocityY = -6;
 }
