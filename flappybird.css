@@ -63,5 +63,10 @@ body {
     border-radius: 8px;
 }
 
-#menuPanel button:hover  { background: #5fd3dd; }
-#menuPanel button:active { transform: translateY(2px); box-shadow: 0 2px 0 #2f7f87; }
+#menuPanel button:hover  {
+     background: #5fd3dd; 
+    }
+
+#menuPanel button:active {
+     transform: translateY(2px); box-shadow: 0 2px 0 #2f7f87; 
+}

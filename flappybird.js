@@ -1,8 +1,6 @@
 // Game flow
 let gameStarted = false;
-let scoreSaved = false;
 let gameOver = false;
-let score = 0;
 
 // menu
 let menu;
@@ -13,6 +11,12 @@ let boardWidth = 360;
 let boardHeight = 640;
 /** @type {CanvasRenderingContext2D} */
 let context;
+
+// score values
+let scoreSaved = false;
+let score = 0;
+let scoreX = boardWidth / 2;
+let scoreY = 45;
 
 // bird
 let birdWidth = 34; // width/height ratio = 408/228 == 17/12
@@ -185,16 +189,22 @@ function update(){
         endGame();
     }
 
+   
+
     //ora i tubi
     for (let i=0; i < pipeArray.length; i++){
         let pipe = pipeArray[i];
         pipe.x += velocityX;
-        context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height)
+        context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width * pipe.scale, pipe.height * pipe.scale);
 
         if(!pipe.passed && bird.x > pipe.x + pipe.width){
             score += 0.5; // così perchè sono due i tubi
             pipe.passed = true;
+            nudgeScore();
+            pipesBeat(pipe)
         }
+
+
 
         if (detectCollision(bird, pipe)){
             endGame();
@@ -231,7 +241,8 @@ function placePipes(){
         y : randomPipeY,
         width : pipeWidth,
         height : pipeHeight,
-        passed : false
+        passed : false,
+        scale: 1
     }
 
 
@@ -243,7 +254,8 @@ function placePipes(){
         y: randomPipeY + pipeHeight + openSpace,
         width : pipeWidth,
         height : pipeHeight,
-        passed : false
+        passed : false,
+        scale: 1
     }
 
     pipeArray.push(botPipe);
@@ -275,9 +287,9 @@ function drawScore(){
     context.lineJoin = "round";
     context.lineWidth = 6;
     context.strokeStyle = "black";
-    context.strokeText(score, boardWidth/2, 45);
+    context.strokeText(score, scoreX, scoreY);
     context.fillStyle = "white";
-    context.fillText(score, boardWidth/2, 45);
+    context.fillText(score, scoreX, scoreY);
 }
 
 function drawGameOver(){
@@ -288,4 +300,19 @@ function drawGameOver(){
         context.strokeText("GAME OVER", 45, 140);
         context.fillStyle = "white";
         context.fillText("GAME OVER", 45, 140)
+}
+
+function nudgeScore() {
+    scoreY -= 3;
+    setTimeout(() => {
+        scoreY += 3;
+    }, 75);
+}
+
+function pipesBeat(pipe){
+       pipe.scale = 0.9;
+    setTimeout(() => {
+        pipe.scale = 1;
+    }, 75);
+
 }
