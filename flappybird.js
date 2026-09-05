@@ -201,7 +201,6 @@ function update(){
             score += 0.5; // così perchè sono due i tubi
             pipe.passed = true;
             nudgeScore();
-            pipesBeat(pipe)
         }
 
 
@@ -307,12 +306,4 @@ function nudgeScore() {
     setTimeout(() => {
         scoreY += 3;
     }, 75);
-}
-
-function pipesBeat(pipe){
-       pipe.scale = 0.9;
-    setTimeout(() => {
-        pipe.scale = 1;
-    }, 75);
-
 }
