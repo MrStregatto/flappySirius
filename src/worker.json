@@ -1,0 +1,1 @@
+import { verifyInitData } from "./telegram.js";
