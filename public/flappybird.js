@@ -86,11 +86,6 @@ window.onload = function(){
             // .addEventListener("click", showLeaderboard);
 
 
-    // --------- gestione video bird
-    // disegno un rettangolo per debug 
-    /*context.fillStyle = "green";
-    context.fillRect(bird.x, bird.y, bird.width, bird.height); */
-
     // load imagine singola (serve per futuro)
     birdImg = new Image();
     birdImg.src = "./grafica/flappybird.png";
@@ -113,7 +108,6 @@ window.onload = function(){
     dieSound.load();
     hitSound.load();
     bgm.load();
-
 
 
     // inputs
@@ -202,8 +196,6 @@ function update(){
             pipe.passed = true;
             nudgeScore();
         }
-
-
 
         if (detectCollision(bird, pipe)){
             endGame();
