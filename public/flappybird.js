@@ -1,6 +1,7 @@
 // Game flow
 let gameStarted = false;
 let gameOver = false;
+let pop;
 
 // menu
 let menu;
@@ -15,6 +16,7 @@ let context;
 // score values
 let scoreSaved = false;
 let score = 0;
+let scorePulseAt = -1e9;
 let scoreX = boardWidth / 2;
 let scoreY = 45;
 
@@ -272,15 +274,28 @@ function detectCollision(a, b){
 }
 
 function drawScore(){
+    const t = (performance.now() - scorePulseAt) / 180;
+    if (t < 1) {
+     pop = Math.sin(t * Math.PI) * 0.25;
+    } 
+    else {
+    pop = 0;
+    }
+
     context.font = "45px sans-serif";
-    context.textAlign = "left";
+    context.textAlign = "center";
     context.textBaseline = "top";
     context.lineJoin = "round";
     context.lineWidth = 6;
     context.strokeStyle = "black";
-    context.strokeText(score, scoreX, scoreY);
     context.fillStyle = "white";
-    context.fillText(score, scoreX, scoreY);
+
+    context.save();
+    context.translate(scoreX, scoreY);
+    context.scale(1 + pop, 1 + pop);
+    context.strokeText(score, 0, 0);
+    context.fillText(score, 0, 0);
+    context.restore();
 }
 
 function drawGameOver(){
@@ -288,14 +303,11 @@ function drawGameOver(){
         context.lineJoin = "round";
         context.lineWidth = 6;
         context.strokeStyle = "black";
-        context.strokeText("GAME OVER", 45, 140);
+        context.strokeText("GAME OVER", boardWidth / 2, 140);
         context.fillStyle = "white";
-        context.fillText("GAME OVER", 45, 140)
+        context.fillText("GAME OVER", boardWidth / 2, 140)
 }
 
 function nudgeScore() {
-    scoreY -= 3;
-    setTimeout(() => {
-        scoreY += 3;
-    }, 75);
+     scorePulseAt = performance.now();
 }
