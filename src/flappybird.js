@@ -58,11 +58,6 @@ const hitSound = new Audio("./audio/sfx_hit.wav");
 const bgm = new Audio("./audio/tiny_paws.mp3");
 const dieSound = new Audio("./audio/sfx_die.wav");
 
-wingSound.preload = "auto";
-hitSound.preload = "auto";
-dieSound.preload = "auto";
-bgm.preload = "auto";
-
 
 bgm.loop = true;
 bgm.volume = 0.1;
@@ -111,6 +106,22 @@ window.onload = function(){
     hitSound.load();
     bgm.load();
 
+    // blocca il Play finche' l'audio non e' pronto
+    const playButton = document.getElementById("playButton");
+    playButton.disabled = true;
+    playButton.textContent = "Caricamento...";
+
+    const audioReady = [wingSound, hitSound, dieSound, bgm].map(a =>
+        new Promise(res => {
+            if (a.readyState >= 4) return res();
+            a.addEventListener("canplaythrough", res, { once: true });
+            a.addEventListener("error", res, { once: true });
+        })
+    );
+    Promise.all(audioReady).then(() => {
+        playButton.disabled = false;
+        playButton.textContent = "Gioca";
+    });
 
     // inputs
     // Tastiera
